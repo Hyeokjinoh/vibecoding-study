@@ -19,12 +19,12 @@
   function svg(paths, opts) {
     var el = document.createElementNS(SVG_NS, "svg");
     el.setAttribute("viewBox", "0 0 16 16");
-    el.setAttribute("width", "14");
-    el.setAttribute("height", "14");
+    el.setAttribute("width", "15");
+    el.setAttribute("height", "15");
     el.setAttribute("aria-hidden", "true");
     el.setAttribute("fill", "none");
     el.setAttribute("stroke", "currentColor");
-    el.setAttribute("stroke-width", (opts && opts.w) || "1.5");
+    el.setAttribute("stroke-width", (opts && opts.w) || "1.4");
     el.setAttribute("stroke-linecap", "round");
     el.setAttribute("stroke-linejoin", "round");
     paths.forEach(function (d) {
@@ -89,19 +89,21 @@
     while (btn.firstChild) btn.removeChild(btn.firstChild);
     btn.classList.remove("is-done", "is-fail");
 
+    // 화면에 글자를 두지 않는다. 아이콘이 바뀌는 것으로 결과를 알린다.
+    // 설명이 필요한 사람에게는 브라우저 기본 툴팁과 aria-label 이 간다.
     if (state === "done") {
       btn.appendChild(iconDone());
       btn.classList.add("is-done");
-      btn.setAttribute("data-tip", "복사됨");
-      btn.setAttribute("aria-label", "복사됨");
+      btn.title = "복사했습니다";
+      btn.setAttribute("aria-label", "복사했습니다");
     } else if (state === "fail") {
       btn.appendChild(iconFail());
       btn.classList.add("is-fail");
-      btn.setAttribute("data-tip", "복사 실패");
-      btn.setAttribute("aria-label", "복사 실패");
+      btn.title = "복사하지 못했습니다";
+      btn.setAttribute("aria-label", "복사하지 못했습니다");
     } else {
       btn.appendChild(iconCopy());
-      btn.setAttribute("data-tip", "복사");
+      btn.title = "복사";
       btn.setAttribute("aria-label", "코드 복사");
     }
   }

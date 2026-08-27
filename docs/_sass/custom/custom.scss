@@ -134,10 +134,12 @@ code, kbd, pre, .highlight, tt { font-family: $mono !important; }
   border: 1px solid $line;
   border-radius: 6px;
   background: rgba(22, 32, 43, 0.92);
-  color: #8b9bb0;
+  color: #9aabbf;
 
   cursor: pointer;
-  opacity: 0;
+  // 평소에도 흐릿하게 보여 준다. hover 에만 나타나면 블록마다
+  // 있다 없다 해서 고장난 것처럼 보인다.
+  opacity: 0.4;
   transition: opacity 0.15s ease, color 0.15s ease,
               border-color 0.15s ease, background 0.15s ease;
 
@@ -171,17 +173,17 @@ code, kbd, pre, .highlight, tt { font-family: $mono !important; }
 
 // 블록에 마우스를 올렸을 때 버튼이 나타난다.
 // 키보드 포커스로도 닿을 수 있어야 하므로 focus-within 을 함께 건다.
+// 블록에 마우스를 올리면 또렷해지고, 버튼 자체에 올리면 완전히 드러난다
 .main-content div.highlighter-rouge:hover .copy-btn,
 .main-content figure.highlight:hover .copy-btn,
 .main-content div.highlighter-rouge:focus-within .copy-btn,
-.main-content figure.highlight:focus-within .copy-btn { opacity: 0.75; }
+.main-content figure.highlight:focus-within .copy-btn { opacity: 0.8; }
 
-.main-content div.highlighter-rouge:hover .copy-btn:hover,
-.main-content figure.highlight:hover .copy-btn:hover { opacity: 1; }
+.copy-btn:hover { opacity: 1 !important; }
 
-// 터치 기기에는 hover 가 없으니 항상 보이게 둔다
+// 터치 기기에는 hover 가 없다
 @media (hover: none) {
-  .copy-btn { opacity: 0.75; }
+  .copy-btn { opacity: 0.7; }
 }
 
 // ── 표 ──────────────────────────────────────────────────────
