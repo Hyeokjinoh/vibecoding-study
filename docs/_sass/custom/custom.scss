@@ -1,0 +1,414 @@
+// ─────────────────────────────────────────────────────────────
+// 이 파일이 만드는 것: 읽기 위한 화면.
+// 원칙 세 가지만 지켰다.
+//   1. 강조색은 민트 하나. 색이 늘면 어디를 봐야 할지 알 수 없게 된다.
+//   2. 본문은 한글 폰트, 코드와 라벨은 고정폭. 둘을 섞지 않는다.
+//   3. 여백이 구조를 설명하게 한다. 선을 긋는 것은 마지막 수단.
+// ─────────────────────────────────────────────────────────────
+
+$mint: #5eead4;
+$mint-dim: #2dd4bf;
+$violet: #a78bfa;
+$amber: #fbbf24;
+$rose: #fb7185;
+$surface: #111820;
+$surface-2: #16202b;
+$line: #1f2c39;
+$muted: #7d8ea3;
+
+$mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+$sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+  "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+
+// ── 기본 타이포 ───────────────────────────────────────────────
+body {
+  font-family: $sans;
+  font-size: 15.5px;
+  line-height: 1.78;
+  letter-spacing: -0.003em;
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;      // 한글이 단어 중간에서 끊기지 않게
+  overflow-wrap: break-word;
+}
+
+h1, h2, h3, h4, h5, h6 { font-family: $sans; letter-spacing: -0.02em; font-weight: 700; }
+
+.main-content {
+  h1 { font-size: 2.05rem; line-height: 1.3; margin-bottom: 0.4em; }
+
+  // 장.절 번호가 붙은 h2 를 카드처럼 띄워 스캔이 쉽게 한다
+  h2 {
+    font-size: 1.42rem;
+    margin-top: 3.2rem;
+    padding-top: 1.6rem;
+    border-top: 1px solid $line;
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute; top: -1px; left: 0;
+      width: 46px; height: 2px;
+      background: linear-gradient(90deg, $mint, transparent);
+    }
+  }
+  h3 { font-size: 1.13rem; margin-top: 2.1rem; color: #dbe6f0; }
+
+  p, li { font-size: 15.5px; }
+  a { text-underline-offset: 3px; text-decoration-thickness: 1px; }
+}
+
+// ── 코드 ────────────────────────────────────────────────────
+code, kbd, pre, .highlight, tt { font-family: $mono !important; }
+
+.main-content {
+  // 인라인 코드: 배경 대신 얇은 테두리. 문장 흐름을 덜 끊는다
+  code.language-plaintext.highlighter-rouge {
+    background: rgba(94, 234, 212, 0.07);
+    border: 1px solid rgba(94, 234, 212, 0.18);
+    color: #9defdf;
+    padding: 0.12em 0.42em;
+    border-radius: 5px;
+    font-size: 0.86em;
+  }
+
+  // 코드 블록: 터미널 창처럼. 위쪽 신호등 점 3개는 순수 CSS
+  div.highlighter-rouge, figure.highlight {
+    border: 1px solid $line;
+    border-radius: 10px;
+    background: #0c1219;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.02) inset, 0 8px 24px rgba(0,0,0,0.28);
+    position: relative;
+    padding-top: 34px;
+    margin: 1.6rem 0;
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      position: absolute; top: 13px; left: 14px;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #3d4b5a;
+      box-shadow: 15px 0 0 #3d4b5a, 30px 0 0 #3d4b5a;
+    }
+    &::after {
+      content: "";
+      position: absolute; top: 0; left: 0; right: 0; height: 34px;
+      background: $surface;
+      border-bottom: 1px solid $line;
+      z-index: 0;
+    }
+    div.highlight, pre.highlight { position: relative; z-index: 1; background: transparent; }
+    pre.highlight { padding: 1rem 1.15rem 1.15rem; }
+  }
+  pre.highlight code { font-size: 13.5px; line-height: 1.72; }
+}
+
+// ── 표 ──────────────────────────────────────────────────────
+.main-content table {
+  border: 1px solid $line;
+  border-radius: 10px;
+  overflow: hidden;
+  border-collapse: separate;
+  border-spacing: 0;
+  box-shadow: none;
+  font-size: 14.5px;
+
+  thead th {
+    background: $surface-2;
+    border-bottom: 1px solid $line;
+    font-family: $sans;
+    font-weight: 700;
+    color: #e8f0f8;
+    letter-spacing: -0.01em;
+  }
+  td, th { border-color: $line; padding: 0.7rem 0.9rem; vertical-align: top; }
+  tbody tr:nth-child(even) { background: rgba(255,255,255,0.014); }
+  tbody tr:hover { background: rgba(94, 234, 212, 0.045); }
+}
+
+// ── 인용문 / 필자 견해 / 검증일 메타 ──────────────────────────
+.main-content blockquote {
+  border-left: 2px solid $violet;
+  background: linear-gradient(90deg, rgba(167,139,250,0.09), rgba(167,139,250,0.01));
+  border-radius: 0 10px 10px 0;
+  padding: 0.9rem 1.15rem;
+  margin: 1.6rem 0;
+  color: #bcc9d8;
+
+  > p:last-child { margin-bottom: 0; }
+  strong { color: #dcd0ff; }
+  code { background: rgba(167,139,250,0.12) !important; border-color: rgba(167,139,250,0.28) !important; color: #d9ccff !important; }
+}
+
+// 챕터 머리말의 검증일 메타 — 각 문서 첫 인용문
+.main-content > blockquote:first-of-type {
+  border-left-color: $mint-dim;
+  background: linear-gradient(90deg, rgba(45,212,191,0.08), transparent);
+  font-family: $mono;
+  font-size: 12.5px;
+  color: $muted;
+  padding: 0.6rem 1rem;
+  strong { color: #9defdf; }
+}
+
+// ── 체크박스(자가 점검) ───────────────────────────────────────
+.main-content {
+  ul li input[type="checkbox"] {
+    appearance: none;
+    width: 17px; height: 17px;
+    border: 1.5px solid #33465a;
+    border-radius: 5px;
+    background: $surface;
+    margin-right: 0.55rem;
+    vertical-align: -3px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    &:hover { border-color: $mint-dim; }
+    &:checked {
+      background: $mint-dim; border-color: $mint-dim;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%230b1016' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' d='M3.5 8.5l3 3 6-6'/%3E%3C/svg%3E");
+      background-size: 13px; background-position: center; background-repeat: no-repeat;
+    }
+  }
+  // 체크리스트는 불릿을 없애고 항목마다 숨 쉴 공간을 준다
+  ul.task-list, ul:has(li input[type="checkbox"]) {
+    list-style: none;
+    padding-left: 0;
+    li { margin-bottom: 0.55rem; }
+  }
+}
+
+// ── Mermaid 다이어그램 ───────────────────────────────────────
+.mermaid, pre.mermaid {
+  background: linear-gradient(180deg, $surface, #0e141b);
+  border: 1px solid $line;
+  border-radius: 12px;
+  padding: 1.6rem 1rem;
+  margin: 2rem 0;
+  text-align: center;
+  overflow-x: auto;
+  svg { max-width: 100%; height: auto; }
+}
+
+// ── 사이드바 ────────────────────────────────────────────────
+.side-bar {
+  border-right: 1px solid $line;
+  background: linear-gradient(180deg, #0e141b, #0b1016);
+}
+.site-title {
+  font-family: $sans !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em;
+  font-size: 1.05rem !important;
+}
+.site-header { border-bottom: 1px solid $line; }
+.nav-list .nav-list-item .nav-list-link {
+  font-size: 14px;
+  border-radius: 7px;
+  padding-top: 0.36rem; padding-bottom: 0.36rem;
+  transition: background 0.12s ease, color 0.12s ease;
+  &:hover { background: rgba(94,234,212,0.07); }
+  &.active {
+    background: rgba(94,234,212,0.12);
+    color: $mint;
+    font-weight: 600;
+  }
+}
+.site-footer { color: $muted; font-size: 11.5px; line-height: 1.7; border-top: 1px solid $line; padding-top: 1rem; }
+
+// ── 검색 ────────────────────────────────────────────────────
+.search-input { font-family: $sans; }
+.search-result:hover, .search-result.active { background: rgba(94,234,212,0.09); }
+
+// ══════════════════════════════════════════════════════════
+//  홈 화면 전용 컴포넌트
+// ══════════════════════════════════════════════════════════
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem;
+  align-items: center;
+  margin: 0 0 2.6rem;
+  padding: 2.2rem 2rem;
+  border: 1px solid $line;
+  border-radius: 16px;
+  background:
+    radial-gradient(900px 300px at 12% -20%, rgba(94,234,212,0.13), transparent 60%),
+    radial-gradient(700px 320px at 95% 120%, rgba(167,139,250,0.11), transparent 60%),
+    linear-gradient(180deg, $surface, #0c1219);
+  position: relative;
+  overflow: hidden;
+
+  // 은은한 격자. 배경이 완전히 비면 화면이 가라앉는다
+  &::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+    background-size: 26px 26px;
+    mask-image: radial-gradient(650px 300px at 30% 0%, #000, transparent 75%);
+    pointer-events: none;
+  }
+  > * { position: relative; z-index: 1; }
+}
+.hero__eyebrow {
+  font-family: $mono;
+  font-size: 11.5px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: $mint;
+  margin-bottom: 0.7rem;
+  display: flex; align-items: center; gap: 0.5rem;
+  &::before {
+    content: ""; width: 6px; height: 6px; border-radius: 50%;
+    background: $mint; box-shadow: 0 0 10px $mint;
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+}
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+.hero__title {
+  font-size: 2.15rem; font-weight: 800; line-height: 1.26;
+  letter-spacing: -0.03em; color: #f2f7fb; margin: 0 0 0.7rem;
+  .accent {
+    background: linear-gradient(100deg, $mint, #7dd3fc 55%, $violet);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+.hero__sub { color: #a8b6c6; font-size: 15px; line-height: 1.75; margin: 0 0 1.4rem; max-width: 46ch; }
+.hero__cta { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+
+.btn-vibe {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  font-family: $sans; font-size: 14px; font-weight: 600;
+  padding: 0.62rem 1.15rem; border-radius: 9px;
+  text-decoration: none !important; transition: all 0.16s ease;
+  border: 1px solid transparent;
+
+  &--primary {
+    background: linear-gradient(135deg, $mint, $mint-dim);
+    color: #071014 !important;
+    &:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(94,234,212,0.28); }
+  }
+  &--ghost {
+    border-color: $line; color: #c3cedb !important; background: rgba(255,255,255,0.02);
+    &:hover { border-color: $mint-dim; color: $mint !important; background: rgba(94,234,212,0.07); }
+  }
+}
+
+// ── 3계층 스택 ──────────────────────────────────────────────
+.layers { display: flex; flex-direction: column-reverse; gap: 0.55rem; margin: 2rem 0 2.6rem; }
+.layer {
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem 1.15rem;
+  border: 1px solid $line;
+  border-radius: 12px;
+  background: linear-gradient(90deg, $surface, #0d141c);
+  transition: transform 0.16s ease, border-color 0.16s ease;
+  &:hover { transform: translateX(4px); border-color: rgba(94,234,212,0.4); }
+
+  &__num {
+    font-family: $mono; font-size: 1.5rem; font-weight: 700;
+    text-align: center; line-height: 1; color: $muted;
+  }
+  &__name { font-weight: 700; font-size: 1.02rem; color: #eef4fa; margin-bottom: 0.15rem; }
+  &__desc { font-size: 13.5px; color: #93a3b8; line-height: 1.6; }
+  &__tag {
+    display: inline-block; font-family: $mono; font-size: 10.5px;
+    padding: 0.14rem 0.5rem; border-radius: 20px; margin-left: 0.5rem;
+    border: 1px solid currentColor; opacity: 0.85; vertical-align: 2px;
+  }
+
+  &--l1 { .layer__num { color: #64748b; } .layer__tag { color: #64748b; } }
+  &--l2 {
+    border-color: rgba(94,234,212,0.34);
+    background: linear-gradient(90deg, rgba(94,234,212,0.09), #0d141c 62%);
+    .layer__num, .layer__tag { color: $mint; }
+  }
+  &--l3 {
+    border-color: rgba(167,139,250,0.3);
+    background: linear-gradient(90deg, rgba(167,139,250,0.08), #0d141c 62%);
+    .layer__num, .layer__tag { color: $violet; }
+  }
+}
+
+// ── 카드 그리드 ─────────────────────────────────────────────
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(232px, 1fr)); gap: 0.9rem; margin: 1.6rem 0 2.4rem; }
+.card {
+  display: block;
+  padding: 1.15rem 1.2rem;
+  border: 1px solid $line;
+  border-radius: 12px;
+  background: linear-gradient(180deg, $surface, #0c1219);
+  text-decoration: none !important;
+  transition: all 0.17s ease;
+  position: relative; overflow: hidden;
+
+  &::after {
+    content: ""; position: absolute; inset: 0 auto auto 0;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, $mint, transparent);
+    transform: scaleX(0); transform-origin: left; transition: transform 0.25s ease;
+  }
+  &:hover { border-color: rgba(94,234,212,0.36); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0,0,0,0.32); }
+  &:hover::after { transform: scaleX(1); }
+
+  &__num { font-family: $mono; font-size: 11px; color: $mint; letter-spacing: 0.1em; }
+  &__title { font-weight: 700; font-size: 15px; color: #eef4fa; margin: 0.35rem 0 0.3rem; }
+  &__desc { font-size: 13px; color: #8b9bb0; line-height: 1.6; }
+}
+
+// ── 메타 스토리 강조 박스 ────────────────────────────────────
+.meta-box {
+  border: 1px solid rgba(94,234,212,0.28);
+  border-radius: 14px;
+  padding: 1.5rem 1.6rem;
+  margin: 2.2rem 0;
+  background:
+    radial-gradient(600px 200px at 0% 0%, rgba(94,234,212,0.1), transparent 65%),
+    linear-gradient(180deg, $surface, #0c1219);
+
+  &__label {
+    font-family: $mono; font-size: 11px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: $mint; margin-bottom: 0.55rem;
+  }
+  &__title { font-weight: 800; font-size: 1.22rem; color: #f2f7fb; margin: 0 0 0.6rem; letter-spacing: -0.02em; }
+  p { color: #a8b6c6; font-size: 14.5px; margin-bottom: 0.8rem; }
+}
+
+// ── 파이프라인(수집 → 집필 → 검증) ───────────────────────────
+.pipeline { display: flex; align-items: stretch; gap: 0.5rem; flex-wrap: wrap; margin: 1.3rem 0 0.4rem; }
+.pipe-step {
+  flex: 1 1 158px;
+  border: 1px solid $line; border-radius: 10px;
+  background: #0c1219; padding: 0.85rem 0.95rem;
+  position: relative;
+
+  &__role { font-family: $mono; font-size: 10.5px; color: $mint; letter-spacing: 0.08em; margin-bottom: 0.3rem; }
+  &__name { font-weight: 700; font-size: 14px; color: #e6edf3; margin-bottom: 0.25rem; }
+  &__note { font-size: 12px; color: #8b9bb0; line-height: 1.55; }
+  &--blocked { border-color: rgba(251,113,133,0.34); .pipe-step__role { color: $rose; } }
+}
+.pipe-arrow { align-self: center; color: #3d4b5a; font-family: $mono; font-size: 18px; }
+
+// ── 통계 줄 ────────────────────────────────────────────────
+.stats { display: flex; flex-wrap: wrap; gap: 0.55rem; margin: 1.4rem 0 0; }
+.stat {
+  flex: 1 1 108px;
+  border: 1px solid $line; border-radius: 10px;
+  background: #0c1219; padding: 0.75rem 0.9rem;
+  &__num { font-family: $mono; font-size: 1.28rem; font-weight: 700; color: $mint; line-height: 1.2; }
+  &__label { font-size: 11.5px; color: $muted; margin-top: 0.15rem; }
+}
+
+// ── 반응형 ─────────────────────────────────────────────────
+@media (max-width: 800px) {
+  .hero { grid-template-columns: 1fr; padding: 1.7rem 1.3rem; text-align: left; }
+  .hero__mascot { display: none; }
+  .hero__title { font-size: 1.72rem; }
+  .main-content h2 { margin-top: 2.4rem; }
+}

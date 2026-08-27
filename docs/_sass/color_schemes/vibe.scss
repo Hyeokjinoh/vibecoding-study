@@ -1,0 +1,30 @@
+// 다크 우선 색 팔레트.
+// 터미널 앞에 앉아 있는 사람이 오래 봐도 눈이 덜 피로한 낮은 채도의 남색 계열에,
+// 신호(센서·통과·강조)만 민트로 튀게 했다. 강조색을 하나로 제한해야 시선이 흩어지지 않는다.
+
+$grey-dk-000: #8b9bb0;
+$grey-dk-100: #64748b;
+$grey-dk-250: #1b2733;
+$grey-dk-300: #111820;
+
+$mint-000: #5eead4;
+$mint-100: #2dd4bf;
+$mint-200: #14b8a6;
+$violet-100: #a78bfa;
+
+$body-background-color: #0b1016;
+$sidebar-color: #0e141b;
+$search-background-color: #111820;
+$table-background-color: #111820;
+$code-background-color: #0e141b;
+$feedback-color: darken($sidebar-color, 3%);
+
+$body-text-color: #c3cedb;
+$body-heading-color: #eef4fa;
+$search-result-preview-color: #7d8ea3;
+$nav-child-link-color: #93a3b8;
+
+$link-color: $mint-000;
+$btn-primary-color: $mint-200;
+$base-button-color: #16202b;
+$border-color: #1f2c39;
