@@ -101,6 +101,76 @@ code, kbd, pre, .highlight, tt { font-family: $mono !important; }
   pre.highlight code { font-size: 13.5px; line-height: 1.72; }
 }
 
+// ── 코드 복사 버튼 ───────────────────────────────────────────
+// 터미널 크롬의 타이틀바(위 34px) 안에 앉힌다.
+// 평소엔 흐릿하게 두고 블록에 마우스를 올리면 또렷해진다.
+// 있는 줄은 알아볼 수 있되 코드를 읽는 데 방해되지 않는 정도.
+.main-content {
+  div.highlighter-rouge, figure.highlight { position: relative; }
+}
+
+.copy-btn {
+  position: absolute;
+  top: 5px;
+  right: 8px;
+  z-index: 3;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+
+  height: 24px;
+  padding: 0 0.5rem;
+  border: 1px solid $line;
+  border-radius: 6px;
+  background: #0c1219;
+  color: #7d8ea3;
+
+  font-family: $mono;
+  font-size: 11px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.55;
+  transition: opacity 0.15s ease, color 0.15s ease,
+              border-color 0.15s ease, background 0.15s ease;
+
+  svg { display: block; flex: none; }
+  &__label { letter-spacing: -0.01em; }
+
+  &:hover {
+    opacity: 1;
+    color: $mint;
+    border-color: rgba(94, 234, 212, 0.45);
+    background: rgba(94, 234, 212, 0.08);
+  }
+  &:focus-visible {
+    opacity: 1;
+    outline: 2px solid $mint-dim;
+    outline-offset: 2px;
+  }
+  &.is-done {
+    opacity: 1;
+    color: #071014;
+    background: $mint-dim;
+    border-color: $mint-dim;
+  }
+  &.is-fail {
+    opacity: 1;
+    color: $rose;
+    border-color: rgba(251, 113, 133, 0.5);
+    background: rgba(251, 113, 133, 0.1);
+  }
+}
+
+// 블록에 마우스를 올리면 버튼이 또렷해진다
+.main-content div.highlighter-rouge:hover .copy-btn,
+.main-content figure.highlight:hover .copy-btn { opacity: 0.9; }
+
+// 터치 기기에는 hover 가 없으니 항상 보이게 둔다
+@media (hover: none) {
+  .copy-btn { opacity: 0.9; }
+}
+
 // ── 표 ──────────────────────────────────────────────────────
 .main-content table {
   border: 1px solid $line;
