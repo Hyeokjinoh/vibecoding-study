@@ -232,8 +232,15 @@ Cursor(`.cursor/rules/`, `.cursorrules`) 나 Copilot(`.github/copilot-instructio
 ```bash
 git clone https://github.com/Hyeokjinoh/vibecoding-study.git
 cd vibecoding-study
+pip install pytest          # 없으면 센서가 돌지 않는다
 python -m pytest seed/todo-cli/tests -q
 ```
+
+> ⚠️ **`pip install pytest` 를 건너뛰지 말 것.**
+> pytest 가 없으면 테스트가 실패하는 게 아니라 **검사 자체가 실행되지 않는다.**
+> 이 저장소의 검증 스크립트는 그 둘을 구분해서 `pytest 가 설치되어 있지 않아
+> 시드 테스트를 검사할 수 없다` 고 따로 알려 준다. 왜 이렇게까지 구분하는지는
+> [4장 4.9절](04-sensors.md)에서 실제 사고 사례와 함께 다룬다.
 
 **테스트는 실패한다. 그게 정상이다.** `seed/todo-cli/` 에는 의도적으로 결함을 넣어 두었고,
 이 저장소의 검증 스크립트는 오히려 이 테스트가 **전부 통과하면** 실패로 판정한다.
@@ -272,6 +279,11 @@ flowchart TB
 
 ## 직접 해보기
 
+0. **먼저 pytest 를 설치한다.** 이 한 줄을 빠뜨리면 이후 실습의 센서가 전부 헛돈다.
+   ```bash
+   pip install pytest
+   python -m pytest --version   # 버전이 찍히면 준비 완료
+   ```
 1. 저장소를 클론하고 시드 테스트를 돌려 실패를 눈으로 확인한다.
    ```bash
    git clone https://github.com/Hyeokjinoh/vibecoding-study.git
@@ -304,6 +316,7 @@ flowchart TB
 - [ ] 이 저장소의 `.claude/settings.json` 에서 `git push` 가 `ask` 인 이유와 `curl` 이 `deny` 인 이유를 각각 한 문장으로 말할 수 있다.
 - [ ] `/init`, `/memory`, `/context` 가 각각 무엇을 하는지 구분할 수 있다.
 - [ ] 시드 테스트가 실패하는 것이 왜 정상이며, 그 출력이 왜 "센서"인지 설명할 수 있다.
+- [ ] `python -m pytest --version` 이 정상 출력되고, **"테스트가 실패한 것"과 "검사가 실행되지 않은 것"** 의 차이를 말할 수 있다.
 
 ---
 
