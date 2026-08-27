@@ -211,31 +211,90 @@ code, kbd, pre, .highlight, tt { font-family: $mono !important; }
   strong { color: #9defdf; }
 }
 
-// ── 체크박스(자가 점검) ───────────────────────────────────────
+// ── 체크박스(자가 점검) ──────────────────────────────────────
+// 마크다운은 이 체크박스를 disabled 로 뱉는다. 자바스크립트로 풀어 주고
+// 진도를 localStorage 에 남긴다(assets/js/self-check.js).
+// 그러니 커서와 hover 는 실제로 눌리는 것을 가리킨다. 거짓 어포던스가 아니다.
 .main-content {
   ul li input[type="checkbox"] {
     appearance: none;
+    -webkit-appearance: none;
+    flex: none;
     width: 17px; height: 17px;
     border: 1.5px solid #33465a;
     border-radius: 5px;
     background: $surface;
-    margin-right: 0.55rem;
+    margin-right: 0.6rem;
     vertical-align: -3px;
     cursor: pointer;
     transition: all 0.15s ease;
+
     &:hover { border-color: $mint-dim; }
+    &:focus-visible { outline: 2px solid $mint-dim; outline-offset: 2px; }
     &:checked {
       background: $mint-dim; border-color: $mint-dim;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%230b1016' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' d='M3.5 8.5l3 3 6-6'/%3E%3C/svg%3E");
       background-size: 13px; background-position: center; background-repeat: no-repeat;
     }
   }
+
   // 체크리스트는 불릿을 없애고 항목마다 숨 쉴 공간을 준다
   ul.task-list, ul:has(li input[type="checkbox"]) {
     list-style: none;
     padding-left: 0;
-    li { margin-bottom: 0.55rem; }
+
+    li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      margin-bottom: 0.5rem;
+      padding: 0.4rem 0.55rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.14s ease, color 0.14s ease;
+
+      &:hover { background: rgba(94, 234, 212, 0.05); }
+
+      // 확인한 항목은 뒤로 물러나게 한다. 남은 것이 눈에 들어와야 한다
+      &.is-checked { color: #6b7c8f; }
+    }
   }
+}
+
+// ── 자가 점검 진행률 ─────────────────────────────────────────
+// 몇 개 남았는지가 보이면 끝까지 가기가 쉬워진다
+.selfcheck-progress {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 0.9rem 0 1.1rem;
+
+  &__bar {
+    flex: 1;
+    height: 5px;
+    border-radius: 99px;
+    background: #16202b;
+    overflow: hidden;
+
+    span {
+      display: block;
+      height: 100%;
+      width: 0;
+      border-radius: 99px;
+      background: linear-gradient(90deg, $mint-dim, $mint);
+      transition: width 0.25s ease;
+    }
+  }
+
+  &__text {
+    flex: none;
+    font-family: $mono;
+    font-size: 11.5px;
+    color: $muted;
+    white-space: nowrap;
+  }
+
+  &.is-complete &__text { color: $mint; }
 }
 
 // ── Mermaid 다이어그램 ───────────────────────────────────────
