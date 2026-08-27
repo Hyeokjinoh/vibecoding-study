@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+seed/todo-cli/todos.json
+_site/
+.jekyll-cache/
+.DS_Store
+.claude/settings.local.json

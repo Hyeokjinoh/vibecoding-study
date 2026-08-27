@@ -1,0 +1,30 @@
+title: 바이브 코딩 스터디
+description: 하네스 엔지니어링과 루프 엔지니어링으로 배우는 AI 코딩 에이전트 실무
+remote_theme: just-the-docs/just-the-docs
+lang: ko
+
+url: https://Hyeokjinoh.github.io
+baseurl: /vibecoding-study
+
+color_scheme: light
+search_enabled: true
+heading_anchor: true
+
+aux_links:
+  GitHub 저장소:
+    - https://github.com/Hyeokjinoh/vibecoding-study
+aux_links_new_tab: true
+
+back_to_top: true
+back_to_top_text: "맨 위로"
+
+footer_content: >-
+  문서 CC BY 4.0 · 코드 MIT ·
+  <a href="https://github.com/Hyeokjinoh/vibecoding-study/blob/main/SOURCES.md">출처와 라이선스 고지</a> ·
+  Anthropic PBC 와 제휴 관계 없는 비공식 학습 자료
+
+exclude:
+  - _facts/
+
+plugins:
+  - jekyll-remote-theme

@@ -1,0 +1,51 @@
+name: verify-docs
+
+# 이 워크플로 자체가 자료에서 가르치는 '센서(Sensor)' 의 실물 예제다.
+# 문서가 스스로 낡는 것을 막기 위해 매주 링크 생존까지 검사한다.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "0 0 * * 1"   # 매주 월요일 00:00 UTC
+  workflow_dispatch:
+
+jobs:
+  structure:
+    name: 구조·예제 검증
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: pytest 설치
+        run: pip install pytest
+      - name: 문서 구조 검증
+        run: ./scripts/check-docs.sh
+      - name: 설정 파일 파싱 검증
+        run: |
+          python -c "import json;json.load(open('.claude/settings.json'));print('settings.json OK')"
+          python -c "import json,glob;[json.load(open(p)) for p in glob.glob('**/*.json',recursive=True)];print('all json OK')"
+
+  links:
+    name: 링크 생존 검사
+    runs-on: ubuntu-latest
+    continue-on-error: true   # 외부 사이트 장애로 빌드를 깨뜨리지 않는다
+    steps:
+      - uses: actions/checkout@v4
+      - name: 링크 추출 및 확인
+        run: |
+          grep -rhoE 'https?://[^ )"`>]+' docs/ README.md SOURCES.md \
+            | sed 's/[.,]$//' | sort -u > /tmp/links.txt
+          echo "검사 대상 $(wc -l < /tmp/links.txt) 개"
+          dead=0
+          while read -r url; do
+            code=$(curl -sL -o /dev/null -w '%{http_code}' --max-time 20 "$url" || echo 000)
+            case "$code" in
+              2*|3*) ;;
+              *) echo "DEAD-LINK $code $url"; dead=$((dead+1)) ;;
+            esac
+          done < /tmp/links.txt
+          echo "죽은 링크 $dead 개"
+          [ "$dead" -eq 0 ]
