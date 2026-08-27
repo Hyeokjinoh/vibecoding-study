@@ -412,3 +412,15 @@ NOTE: Official docs moved from `docs.claude.com/en/docs/claude-code/*` to `code.
 - FACT: 검증 대상을 프롬프트에 주면(테스트 케이스, 기대 출력) Claude 가 스스로 검증해 수정 요청 전에 문제를 잡는다.
 - SOURCE: https://code.claude.com/docs/en/costs
 - CONFIDENCE: high
+
+---
+
+## 자료 검증 환경 (2026-08-28)
+
+- FACT: 이 자료의 모든 챕터는 아래 환경에서 명령어와 설정을 확인했다.
+- CONFIG: `claude --version` 출력 = `2.1.247 (Claude Code)`
+- FACT: 버전 확인 명령은 `claude --version` 이며, 버전 번호 뒤에 `(Claude Code)` 가 붙어 출력된다.
+- FACT: 각 챕터 상단의 `**검증일**` / `**Claude Code**` 메타는 이 확인 결과를 적은 것이다.
+  도구가 빠르게 바뀌므로, 독자는 자기 버전과 대조한 뒤 읽어야 한다.
+- SOURCE: 로컬 실행 결과 (재현 방법: `claude --version`) , https://code.claude.com/docs/en/quickstart
+- CONFIDENCE: high

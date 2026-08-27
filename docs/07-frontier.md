@@ -432,7 +432,7 @@ Managed Agents 쪽에는 cron + IANA 타임존 스케줄 배포가 있다.
 ### 실습 1 — AGENTS.md 다리 놓기 (5분)
 
 ```bash
-cd <내-프로젝트>
+cd /path/to/my-project   # 자기 프로젝트 경로로 바꿀 것
 
 cat > AGENTS.md <<'EOF'
 # AGENTS.md

@@ -14,7 +14,7 @@ nav_order: 2
 
 ---
 
-## 1. 설치와 인증
+## 0.1 설치와 인증
 
 ### 설치 — npm 이 아니라 네이티브 인스톨러
 
@@ -77,7 +77,7 @@ Amazon Bedrock · Google Cloud Agent Platform · Microsoft Foundry,
 
 ---
 
-## 2. 권한 모드 — 신입이 처음부터 살아야 할 곳
+## 0.2 권한 모드 — 신입이 처음부터 살아야 할 곳
 
 Claude Code 는 "이 도구를 써도 되는가"를 **권한 모드(permission mode)** 로 관리한다.
 세션 중에는 `Shift+Tab` 을 눌러 모드를 순환시키고, 시작할 때 고정하려면 `--permission-mode` 를 쓴다.
@@ -137,7 +137,7 @@ claude --permission-mode plan   # 시작할 때부터 계획 모드
 
 ---
 
-## 3. `.claude/settings.json` — 5단계 우선순위와 평가 순서
+## 0.3 `.claude/settings.json` — 5단계 우선순위와 평가 순서
 
 설정은 한 곳에 있지 않다. 다섯 군데에서 읽히고, **위쪽이 아래쪽을 덮어쓴다.**
 
@@ -205,7 +205,7 @@ claude --permission-mode plan   # 시작할 때부터 계획 모드
 
 ---
 
-## 4. `/init`, `/memory`, `/context`
+## 0.4 `/init`, `/memory`, `/context`
 
 세 슬래시 명령은 "에이전트가 무엇을 알고 시작하는가"를 다룬다.
 
@@ -225,7 +225,7 @@ Cursor(`.cursor/rules/`, `.cursorrules`) 나 Copilot(`.github/copilot-instructio
 
 ---
 
-## 5. 첫 번째 센서 만나기
+## 0.5 첫 번째 센서 만나기
 
 이 저장소를 클론하고 실습용 시드 코드의 테스트를 돌려 보자.
 
@@ -256,7 +256,7 @@ python -m pytest seed/todo-cli/tests -q
 
 ---
 
-## 6. 3계층 지도 다시 보기
+## 0.6 3계층 지도 다시 보기
 
 ```mermaid
 flowchart TB

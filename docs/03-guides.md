@@ -335,9 +335,8 @@ paths:
 - [ ] 가이드와 센서의 차이를 시점(전/후)과 성격(피드포워드/피드백)으로 설명할 수 있다
 - [ ] 여러 `CLAUDE.md` 가 덮어쓰기가 아니라 이어붙임으로 로드된다는 것을 알고, `/context` 로 확인할 수 있다
 - [ ] `@경로` import 가 컨텍스트를 아껴 주지 않는 이유를 말할 수 있고, 최대 홉 수를 안다
-- [ ] "이 줄을 지우면 에이전트가 실수하는가?" 기준으로 `CLAUDE.md` 의 줄을 넣고 뺄 수 있다
-- [ ] 스킬의 점진적 공개가 무엇이며, `description` 을 왜 앞부분에 몰아 써야 하는지 설명할 수 있다
-- [ ] 문서로 적는 것과 `tools` 필드·훅으로 강제하는 것의 차이를 구분할 수 있다
+- [ ] **로드 시점**(항상 / 경로별 / 호출 시)으로 규칙을 어디에 둘지 정할 수 있고, `CLAUDE.md` 권장 상한을 안다
+- [ ] 스킬의 점진적 공개를 설명할 수 있고, 문서로 적는 것과 `tools`·훅으로 강제하는 것의 차이를 구분할 수 있다
 
 ---
 
@@ -348,7 +347,8 @@ paths:
 - 서브에이전트 `tools` 필드와 정의 위치 — <https://code.claude.com/docs/en/sub-agents>
 - 설정 파일 계층과 권한 규칙 — <https://code.claude.com/docs/en/settings>
 - `CLAUDE.md` 비대화의 해악, 훅과 문서의 역할 분담 — <https://code.claude.com/docs/en/best-practices>
+- 로드 시점에 따른 컨텍스트 비용, `CLAUDE.md` 200줄 권장치, `/context`·`/usage` — <https://code.claude.com/docs/en/costs>
 - 하네스 분류(Guides/Sensors, 결정적/추론적), 세 가지 규제 차원 — Birgitta Böckeler, "Harness Engineering for Coding Agent Users": <https://martinfowler.com/articles/harness-engineering.html>
 - 컨텍스트 엔지니어링 — Anthropic Engineering: <https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents>
 
-가이드/센서 및 결정적/추론적 통제 분류는 Birgitta Böckeler 의 "Harness Engineering for Coding Agent Users"(martinfowler.com, 2026)에서 온 것이며, 컨텍스트 예산 관련 서술은 Anthropic 의 컨텍스트 엔지니어링 자료를 근거로 한다. 전체 참고 자료와 라이선스 고지는 저장소 루트의 `SOURCES.md` 를 참고할 것.
+본문은 위 자료를 읽고 이해한 뒤 한국어로 새로 집필했다. 원문의 문장을 옮기지 않았다. 전체 참고 자료와 라이선스 고지는 저장소 루트의 `SOURCES.md` 를 참고할 것.
