@@ -20,26 +20,11 @@ heading_anchor: true
 back_to_top: true
 back_to_top_text: "↑ 맨 위로"
 
-# 다이어그램 렌더링 — 이게 없으면 ```mermaid 블록이 코드로만 보인다
+# 다이어그램 렌더링 — 이게 없으면 ```mermaid 블록이 코드로만 보인다.
+# 세부 설정은 여기가 아니라 _includes/mermaid_config.js 에서 읽는다.
+# (테마가 그 include 를 `var config = {...}` 로 주입한다)
 mermaid:
   version: "10.9.1"
-  config:
-    theme: dark
-    themeVariables:
-      background: "#111820"
-      primaryColor: "#17212b"
-      primaryTextColor: "#e6edf3"
-      primaryBorderColor: "#2b3946"
-      lineColor: "#5eead4"
-      secondaryColor: "#1b2733"
-      tertiaryColor: "#131c25"
-      fontFamily: "JetBrains Mono, ui-monospace, monospace"
-      fontSize: "14px"
-    flowchart:
-      curve: basis
-      padding: 16
-      nodeSpacing: 44
-      rankSpacing: 52
 
 callouts_level: quiet
 callouts:

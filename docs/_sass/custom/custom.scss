@@ -177,6 +177,31 @@ code, kbd, pre, .highlight, tt { font-family: $mono !important; }
 }
 
 // ── Mermaid 다이어그램 ───────────────────────────────────────
+// 주의: mermaid 블록도 마크다운상으로는 코드 블록이라, 위에서 만든
+// 터미널 창 크롬(신호등 점 3개)이 그대로 붙어 버린다.
+// 그림 위에 가짜 타이틀바가 얹히면 우스워지므로 여기서 벗겨 낸다.
+.main-content {
+  div.highlighter-rouge:has(code.language-mermaid),
+  figure.highlight:has(code.language-mermaid) {
+    padding-top: 0;
+    background: linear-gradient(180deg, $surface, #0e141b);
+    border-radius: 12px;
+    box-shadow: none;
+    &::before, &::after { display: none; }
+    pre.highlight { padding: 1.5rem 0.8rem; }
+  }
+}
+
+code.language-mermaid {
+  display: block;
+  text-align: center;
+  background: transparent !important;
+  border: 0 !important;
+  svg { max-width: 100%; height: auto; }
+  // 렌더링 전 원본 텍스트가 잠깐 보이는 것을 막는다
+  &:not([data-processed]) { visibility: hidden; min-height: 120px; }
+}
+
 .mermaid, pre.mermaid {
   background: linear-gradient(180deg, $surface, #0e141b);
   border: 1px solid $line;
