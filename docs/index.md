@@ -10,9 +10,9 @@ nav_order: 1
       바이브 코딩,<br><span class="accent">프롬프트에서 멈추지 않기</span>
     </h1>
     <p class="hero__sub">
-      AI 코딩 에이전트를 <strong>잘 쓰는 법</strong>이 아니라,
-      에이전트가 <strong>일할 환경을 설계하는 법</strong>.
-      컴퓨터공학 전공 신입 개발자가 혼자 따라 할 수 있게 만들었습니다.
+      AI 코딩 에이전트를 <strong>잘 쓰는 법</strong>이 아닙니다.
+      에이전트가 <strong>일할 환경을 설계하는 법</strong>입니다.
+      컴퓨터공학 전공 신입 개발자가 혼자서도 따라올 수 있게 만들었습니다.
     </p>
     <div class="hero__cta">
       <a class="btn-vibe btn-vibe--primary" href="00-setup.html">0장부터 시작 →</a>
@@ -57,12 +57,13 @@ nav_order: 1
   </div>
 </div>
 
-대부분의 사람은 1계층에서 멈춥니다. 에이전트에게 말을 걸고, 나온 코드를 눈으로 훑고,
-마음에 안 들면 다시 말을 겁니다. 이 방식으로 하루를 보내면 코드는 쌓이지만
-**그 코드를 믿을 근거는 하나도 쌓이지 않습니다.**
+에이전트에게 말을 걸고, 나온 코드를 눈으로 훑고, 마음에 안 들면 다시 말을 겁니다.
+대부분은 여기, **1계층**에서 멈춥니다. 그렇게 하루를 보내면 어떻게 될까요?
 
-"바이브 코딩"이 조롱받는 이유가 정확히 여기 있습니다. 문제는 모델이 아니라,
-모델 주변에 아무것도 만들어 두지 않은 채로 쓰는 방식입니다.
+코드는 쌓입니다. 그런데 **그 코드를 믿을 근거는 하나도 쌓이지 않습니다.**
+
+"바이브 코딩"이 조롱받는 이유가 정확히 여기 있습니다. 문제는 모델이 아니에요.
+모델 주변에 아무것도 만들어 두지 않은 채로 쓰는 방식이 문제입니다.
 
 ---
 
@@ -73,21 +74,21 @@ nav_order: 1
     <div class="layer__num">1</div>
     <div>
       <div class="layer__name">프롬프트<span class="layer__tag">대부분 여기서 멈춘다</span></div>
-      <div class="layer__desc">내가 직접 말을 건다. 필요하지만 처리량의 상한이 사람에게 걸린다.</div>
+      <div class="layer__desc">내가 직접 말을 겁니다. 꼭 필요하지만, 처리량의 상한이 사람에게 걸립니다.</div>
     </div>
   </div>
   <div class="layer layer--l2">
     <div class="layer__num">2</div>
     <div>
       <div class="layer__name">하네스<span class="layer__tag">이 자료의 심장</span></div>
-      <div class="layer__desc">규칙·도구·권한·자동 검사로 에이전트를 둘러싼 환경을 만든다. 같은 실수를 두 번 지적하는 대신, 그 실수가 구조적으로 불가능해지게 한다.</div>
+      <div class="layer__desc">규칙·도구·권한·자동 검사로 에이전트를 둘러싼 환경을 만듭니다. 같은 실수를 두 번 지적하는 대신, 그 실수가 구조적으로 불가능해지게 합니다.</div>
     </div>
   </div>
   <div class="layer layer--l3">
     <div class="layer__num">3</div>
     <div>
       <div class="layer__name">루프<span class="layer__tag">시스템이 일한다</span></div>
-      <div class="layer__desc">말을 거는 일 자체를 시스템에 맡긴다. 사람은 조작자에서 설계자로 올라가고 검토와 판단에만 개입한다.</div>
+      <div class="layer__desc">말을 거는 일 자체를 시스템에 맡깁니다. 사람은 조작자에서 설계자로 올라가고, 검토와 판단에만 개입합니다.</div>
     </div>
   </div>
 </div>
@@ -105,29 +106,29 @@ flowchart LR
 ## 하네스(harness)란 무엇인가
 
 Birgitta Böckeler는 하네스를 **모델 자체를 뺀 에이전트의 나머지 전부**로 봅니다.
-파일시스템, 실행 환경, 규칙 문서, 도구, 자동 검사가 전부 여기 들어갑니다.
-그 안의 통제 장치는 두 축으로 나뉩니다.
+그럼 뭐가 들어갈까요? 파일시스템, 실행 환경, 규칙 문서, 도구, 자동 검사가 전부 여기 들어갑니다.
+그 안의 통제 장치는 두 축으로 나뉘고요.
 
 |  | ⚙️ Computational · 결정적 | 🧠 Inferential · 추론적 |
 |---|---|---|
-| **▶ Guides** <br>행동 **전에** 방향을 준다 | 타입 시스템, 언어 서버, 코드 생성기 | `CLAUDE.md`, 스킬, 계획 문서 |
-| **◀ Sensors** <br>행동 **후에** 되돌린다 | 테스트, 린터, 타입 검사, CI | 리뷰 서브에이전트, 모델이 읽도록 쓴 오류 메시지 |
+| **▶ Guides** <br>행동 **전에** 방향을 줍니다 | 타입 시스템, 언어 서버, 코드 생성기 | `CLAUDE.md`, 스킬, 계획 문서 |
+| **◀ Sensors** <br>행동 **후에** 되돌립니다 | 테스트, 린터, 타입 검사, CI | 리뷰 서브에이전트, 모델이 읽도록 쓴 오류 메시지 |
 
 Böckeler의 핵심 지적은 **둘 중 하나만으로는 안 된다**는 것입니다.
-Guides만 있으면 규칙이 지켜졌는지 아무도 확인하지 않고,
-Sensors만 있으면 매번 같은 실수를 다시 고치게 됩니다.
+Guides만 있으면 규칙이 지켜졌는지 아무도 확인하지 않습니다.
+Sensors만 있으면 매번 같은 실수를 다시 고치게 되고요.
 ([출처](https://martinfowler.com/articles/harness-engineering.html))
 
 ---
 
 ## 루프 엔지니어링이란 무엇인가
 
-Addy Osmani가 말하는 루프 엔지니어링은, 내가 프롬프트를 치는 대신
-**프롬프트를 치는 시스템을 설계하는 일**로 작업의 층위를 옮기는 것입니다.
+Addy Osmani가 말하는 루프 엔지니어링은 작업의 층위를 옮기는 일입니다.
+내가 프롬프트를 치는 대신, **프롬프트를 치는 시스템을 설계하는 쪽**으로요.
 
-매일 아침 에이전트를 열어 "실패한 CI 있어?"라고 묻는 대신,
-밤사이 실패를 분류하고 수정 후보를 만들어 두는 자동화를 설계합니다.
-다만 이것이 성립하려면 **"다 됐다"를 기계가 판정할 수 있어야** 합니다.
+매일 아침 에이전트를 열어 "실패한 CI 있어?"라고 묻지 않습니다.
+대신 밤사이 실패를 분류하고 수정 후보를 만들어 두는 자동화를 설계합니다.
+다만 이게 성립하려면 조건이 하나 있어요. **"다 됐다"를 기계가 판정할 수 있어야** 합니다.
 판정할 방법이 없는 일에는 루프를 걸지 않습니다.
 ([출처](https://addyosmani.com/blog/loop-engineering/))
 
@@ -137,8 +138,8 @@ Addy Osmani가 말하는 루프 엔지니어링은, 내가 프롬프트를 치�
   <div class="meta-box__label">meta</div>
   <div class="meta-box__title">이 저장소 자체가 교보재입니다</div>
   <p>
-    이 문서는 사람이 혼자 쓴 것이 아니라, <code>.claude/agents/</code> 에 정의된
-    세 에이전트가 역할을 나눠 만들었습니다. 그 정의 파일이 저장소에 그대로 남아 있고,
+    이 문서는 사람이 혼자 쓴 게 아니에요. <code>.claude/agents/</code> 에 정의된
+    세 에이전트가 역할을 나눠 만들었습니다. 그 정의 파일은 저장소에 그대로 남아 있고,
     5장의 실습 재료가 됩니다.
   </p>
 
@@ -146,19 +147,19 @@ Addy Osmani가 말하는 루프 엔지니어링은, 내가 프롬프트를 치�
     <div class="pipe-step">
       <div class="pipe-step__role">01 · 수집</div>
       <div class="pipe-step__name">collector</div>
-      <div class="pipe-step__note">사실만 모은다. 출처 URL 없는 사실은 버린다. 문서를 쓰지 않는다.</div>
+      <div class="pipe-step__note">사실만 모읍니다. 출처 URL 없는 사실은 버립니다. 문서는 쓰지 않습니다.</div>
     </div>
     <div class="pipe-arrow">→</div>
     <div class="pipe-step pipe-step--blocked">
       <div class="pipe-step__role">02 · 집필</div>
       <div class="pipe-step__name">writer</div>
-      <div class="pipe-step__note"><strong>웹 도구가 없다.</strong> 모인 사실만으로 쓴다. 근거가 없으면 빈칸을 남긴다.</div>
+      <div class="pipe-step__note"><strong>웹 도구가 없습니다.</strong> 모인 사실만으로 씁니다. 근거가 없으면 빈칸을 남깁니다.</div>
     </div>
     <div class="pipe-arrow">→</div>
     <div class="pipe-step">
       <div class="pipe-step__role">03 · 검증</div>
       <div class="pipe-step__name">verifier</div>
-      <div class="pipe-step__note">판정만 한다. 고치지 않는다. 만든 주체가 검사하지 않는다.</div>
+      <div class="pipe-step__note">판정만 합니다. 고치지 않습니다. 만든 주체가 검사하지 않습니다.</div>
     </div>
   </div>
 
@@ -171,17 +172,17 @@ Addy Osmani가 말하는 루프 엔지니어링은, 내가 프롬프트를 치�
 </div>
 
 > 💭 **필자 견해**
-> 하네스는 설명으로 이해되지 않습니다. 돌아가는 물건을 봐야 이해됩니다.
+> 하네스는 설명만으로는 잘 안 와닿습니다. 돌아가는 물건을 봐야 이해되거든요.
 > 그래서 이 자료는 자기 자신을 교보재로 삼았습니다.
 
-집필 에이전트에게 웹 도구를 주지 않은 것은 기능 누락이 아니라 설계입니다.
-근거 없는 문장이 섞일 경로를 아예 없앤 **Guide**입니다.
+집필 에이전트에게 웹 도구를 주지 않은 건 기능 누락이 아니라 설계입니다.
+근거 없는 문장이 섞일 경로를 아예 없앤 **Guide**예요.
 그리고 이 저장소의 CI —
 [`verify.yml`](https://github.com/Hyeokjinoh/vibecoding-study/blob/main/.github/workflows/verify.yml) —
 는 살아 있는 **Sensor**입니다. 필수 섹션 누락, 외부 이미지, 낡은 문서 URL,
-짝이 안 맞는 코드 블록을 매번 잡아내고, 실습용 시드 코드의 결함이 사라졌는지까지 검사합니다.
+짝이 안 맞는 코드 블록을 매번 잡아냅니다. 실습용 시드 코드의 결함이 사라졌는지까지 검사하고요.
 
-읽기 전에 이 네 파일을 먼저 열어 보길 권합니다. 뒤의 챕터는 전부 이 구조의 해설입니다.
+본격적으로 읽기 전에 이 네 파일을 먼저 열어 보시길 권합니다. 뒤의 챕터는 전부 이 구조의 해설이거든요.
 
 - [`collector.md`](https://github.com/Hyeokjinoh/vibecoding-study/blob/main/.claude/agents/collector.md) · [`writer.md`](https://github.com/Hyeokjinoh/vibecoding-study/blob/main/.claude/agents/writer.md) · [`verifier.md`](https://github.com/Hyeokjinoh/vibecoding-study/blob/main/.claude/agents/verifier.md) · [`verify.yml`](https://github.com/Hyeokjinoh/vibecoding-study/blob/main/.github/workflows/verify.yml)
 
@@ -193,7 +194,7 @@ Addy Osmani가 말하는 루프 엔지니어링은, 내가 프롬프트를 치�
   <a class="card" href="00-setup.html">
     <div class="card__num">CHAPTER 0</div>
     <div class="card__title">준비</div>
-    <div class="card__desc">설치, 권한 모드, 설정 파일 우선순위. 첫 센서를 만난다.</div>
+    <div class="card__desc">설치, 권한 모드, 설정 파일 우선순위. 첫 센서를 만나 봅니다.</div>
   </a>
   <a class="card" href="01-steering.html">
     <div class="card__num">CHAPTER 1</div>
@@ -203,22 +204,22 @@ Addy Osmani가 말하는 루프 엔지니어링은, 내가 프롬프트를 치�
   <a class="card" href="02-context.html">
     <div class="card__num">CHAPTER 2</div>
     <div class="card__title">컨텍스트 엔지니어링</div>
-    <div class="card__desc">에이전트가 헛짓하는 진짜 이유. 컨텍스트를 자원으로 다룬다.</div>
+    <div class="card__desc">에이전트가 헛짓하는 진짜 이유. 컨텍스트를 자원으로 다룹니다.</div>
   </a>
   <a class="card" href="03-guides.html">
     <div class="card__num">CHAPTER 3</div>
     <div class="card__title">Guides</div>
-    <div class="card__desc">CLAUDE.md, 규칙, 스킬. 행동하기 전에 방향을 준다.</div>
+    <div class="card__desc">CLAUDE.md, 규칙, 스킬. 행동하기 전에 방향을 줍니다.</div>
   </a>
   <a class="card" href="04-sensors.html">
     <div class="card__num">CHAPTER 4</div>
     <div class="card__title">Sensors</div>
-    <div class="card__desc">테스트·훅·CI. 행동한 뒤에 되돌린다. 고장 난 센서의 위험까지.</div>
+    <div class="card__desc">테스트·훅·CI. 행동한 뒤에 되돌립니다. 고장 난 센서의 위험까지.</div>
   </a>
   <a class="card" href="05-subagents.html">
     <div class="card__num">CHAPTER 5</div>
     <div class="card__title">서브에이전트</div>
-    <div class="card__desc">만든 사람이 검사하지 않게 만들기. 도구를 빼앗는 것이 통제다.</div>
+    <div class="card__desc">만든 사람이 검사하지 않게 만들기. 도구를 빼앗는 것이 통제입니다.</div>
   </a>
   <a class="card" href="06-loops.html">
     <div class="card__num">CHAPTER 6</div>
@@ -248,7 +249,7 @@ Addy Osmani가 말하는 루프 엔지니어링은, 내가 프롬프트를 치�
 
 이 자료는 외부 자료를 참조하되 복제하지 않습니다. 참고 자료 목록과 각 자료의 라이선스,
 그리고 이 저장소가 무엇을 하고 무엇을 하지 않았는지는
-[SOURCES.md](https://github.com/Hyeokjinoh/vibecoding-study/blob/main/SOURCES.md) 에 정리해 두었습니다.
+[SOURCES.md](https://github.com/Hyeokjinoh/vibecoding-study/blob/main/SOURCES.md) 에 정리해 두었으니 살펴봐 주세요.
 
 이 자료는 독립적으로 만든 비공식 학습 자료이며 Anthropic PBC 와 제휴하거나 승인받은 관계가 아닙니다.
 Claude 와 Anthropic 은 Anthropic PBC 의 상표입니다.
