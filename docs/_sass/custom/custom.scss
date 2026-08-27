@@ -119,10 +119,16 @@ code, kbd, pre, .highlight, tt { font-family: $mono !important; }
 // ── 코드 복사 버튼 ───────────────────────────────────────────
 // 직접 만들지 않는다. just-the-docs 에 내장되어 있고
 // _config.yml 의 enable_copy_code_button 으로 켠다.
-// 테마는 코드 블록에 클래스 없는 <button> 을 붙이므로 여기서 색만 맞춘다.
+// 테마는 코드 블록에 클래스 없는 <button> 을 붙이므로 여기서 색과 위치만 잡는다.
 .main-content {
   div.highlighter-rouge > button,
   figure.highlight > button {
+    // 테마 기본값은 top:0; right:0 이라 모서리에 딱 붙는다.
+    // 상자에 overflow:hidden 이 걸려 있어 이 상태로는 버튼 테두리와
+    // 포커스 링의 위·오른쪽이 잘린다. 안쪽으로 조금 들여놓는다.
+    top: 6px;
+    right: 6px;
+
     color: #9aabbf;
     background-color: rgba(22, 32, 43, 0.92);
     border: 1px solid $line;
@@ -133,9 +139,23 @@ code, kbd, pre, .highlight, tt { font-family: $mono !important; }
       background-color: rgba(94, 234, 212, 0.12);
       border-color: rgba(94, 234, 212, 0.5);
     }
-    &:active { color: $mint; }
-    &:focus-visible { outline: 2px solid $mint-dim; outline-offset: 2px; }
+
+    // 테마는 :focus-visible 이 아니라 :focus 에 바깥 아웃라인을 준다.
+    // 그래서 마우스로 눌러도 링이 뜨고, 잘린 나머지가 'ㄴ' 자로 보였다.
+    // 바깥 아웃라인을 끄고, 잘리지 않는 안쪽 링으로 대체한다.
+    &:focus,
+    &:active { outline: none; }
+
+    // 키보드로 이동해 온 경우에만 안쪽 링을 보여 준다
+    &:focus-visible {
+      outline: none;
+      box-shadow: inset 0 0 0 2px $mint-dim;
+    }
   }
+
+  // 색은 svg 의 fill 로 들어간다
+  div.highlighter-rouge > button svg,
+  figure.highlight > button svg { fill: currentColor; }
 
   // mermaid 블록도 마크다운상으로는 코드 블록이라 버튼이 붙는다.
   // 그림을 클립보드에 복사할 일은 없으므로 감춘다.
