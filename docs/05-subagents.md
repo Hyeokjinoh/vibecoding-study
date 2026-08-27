@@ -397,6 +397,9 @@ claude
 - 권한 규칙 문법: <https://code.claude.com/docs/en/permissions>
 - 슬래시 명령·스킬 프론트매터: <https://code.claude.com/docs/en/skills>
 - 검증 게이트와 리뷰 에이전트 운용: <https://code.claude.com/docs/en/best-practices>
+- 에이전트 패턴 5종 — Anthropic Engineering, "Building effective agents": <https://www.anthropic.com/engineering/building-effective-agents>
+- 컨텍스트 엔지니어링 — Anthropic Engineering: <https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents>
+- 하네스 분류(Guides/Sensors, 결정적/추론적), 세 가지 규제 차원 — Birgitta Böckeler, "Harness Engineering for Coding Agent Users": <https://martinfowler.com/articles/harness-engineering.html>
 
 에이전트 패턴 5종의 분류와 컨텍스트 엔지니어링 논의는 Anthropic 엔지니어링 블로그의
 "Building effective agents", "Effective context engineering for AI agents" 에서 왔다.

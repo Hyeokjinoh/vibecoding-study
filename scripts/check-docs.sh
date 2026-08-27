@@ -35,11 +35,19 @@ for f in docs/*.md; do
   [ $((n % 2)) -eq 0 ] || err "$(basename "$f"): 코드 블록 백틱이 홀수 개 ($n)"
 done
 
+# 주의: "명령이 실패했다"와 "테스트가 실패했다"는 다르다.
+# pytest 가 없어서 난 실패를 테스트 실패로 착각하면 센서가 거짓 안심을 준다.
+# 그래서 도구 존재를 먼저 확인하고, 종료 코드를 구분해서 읽는다.
 note "== 5. 시드 코드 테스트 (실패가 정상) =="
-if python3 -m pytest seed/todo-cli/tests -q >/dev/null 2>&1; then
-  err "seed/todo-cli: 테스트가 전부 통과함. 실습용 결함이 사라졌다"
+if ! python3 -m pytest --version >/dev/null 2>&1; then
+  err "pytest 가 설치되어 있지 않아 시드 테스트를 검사할 수 없다 (pip install pytest)"
 else
-  note "OK  시드 테스트가 예상대로 실패한다"
+  python3 -m pytest seed/todo-cli/tests -q >/dev/null 2>&1
+  case "$?" in
+    0) err "seed/todo-cli: 테스트가 전부 통과함. 실습용 결함이 사라졌다" ;;
+    1) note "OK  시드 테스트가 예상대로 실패한다" ;;
+    *) err "seed/todo-cli: pytest 가 비정상 종료했다 (수집 오류 등). 종료 코드 $?" ;;
+  esac
 fi
 
 note "== 6. 라이선스 고지 =="
