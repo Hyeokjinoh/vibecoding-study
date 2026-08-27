@@ -17,6 +17,10 @@ search:
   button: false
 
 heading_anchor: true
+
+# 코드 블록 복사 버튼은 테마에 내장되어 있다. 직접 만들 필요가 없다.
+# 이 값을 켜야 버튼이 쓰는 SVG 심볼이 페이지에 포함된다.
+enable_copy_code_button: true
 back_to_top: true
 back_to_top_text: "↑ 맨 위로"
 

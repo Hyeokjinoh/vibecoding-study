@@ -116,74 +116,31 @@ code, kbd, pre, .highlight, tt { font-family: $mono !important; }
   }
 }
 
-// ── 코드 복사 버튼 (아이콘 전용) ─────────────────────────────
-// 상자 안 우측 상단. 평소엔 흐릿하다가 블록에 마우스를 올리면 또렷해진다.
-.copy-btn {
-  position: absolute;
-  top: 6px;
-  right: 6px;
-  z-index: 10;
+// ── 코드 복사 버튼 ───────────────────────────────────────────
+// 직접 만들지 않는다. just-the-docs 에 내장되어 있고
+// _config.yml 의 enable_copy_code_button 으로 켠다.
+// 테마는 코드 블록에 클래스 없는 <button> 을 붙이므로 여기서 색만 맞춘다.
+.main-content {
+  div.highlighter-rouge > button,
+  figure.highlight > button {
+    color: #9aabbf;
+    background-color: rgba(22, 32, 43, 0.92);
+    border: 1px solid $line;
+    border-radius: 6px;
 
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 28px;
-  height: 28px;
-  padding: 0;
-  border: 1px solid $line;
-  border-radius: 6px;
-  background: rgba(22, 32, 43, 0.92);
-  color: #9aabbf;
-
-  cursor: pointer;
-  // 평소에도 흐릿하게 보여 준다. hover 에만 나타나면 블록마다
-  // 있다 없다 해서 고장난 것처럼 보인다.
-  opacity: 0.4;
-  transition: opacity 0.15s ease, color 0.15s ease,
-              border-color 0.15s ease, background 0.15s ease;
-
-  svg { display: block; flex: none; pointer-events: none; }
-
-  &:hover {
-    color: $mint;
-    border-color: rgba(94, 234, 212, 0.5);
-    background: rgba(94, 234, 212, 0.12);
-  }
-  &:active { transform: scale(0.94); }
-  &:focus-visible {
-    opacity: 1;
-    outline: 2px solid $mint-dim;
-    outline-offset: 2px;
+    &:hover {
+      color: $mint;
+      background-color: rgba(94, 234, 212, 0.12);
+      border-color: rgba(94, 234, 212, 0.5);
+    }
+    &:active { color: $mint; }
+    &:focus-visible { outline: 2px solid $mint-dim; outline-offset: 2px; }
   }
 
-  &.is-done {
-    opacity: 1;
-    color: #071014;
-    background: $mint-dim;
-    border-color: $mint-dim;
-  }
-  &.is-fail {
-    opacity: 1;
-    color: $rose;
-    border-color: rgba(251, 113, 133, 0.55);
-    background: rgba(251, 113, 133, 0.14);
-  }
-}
-
-// 블록에 마우스를 올렸을 때 버튼이 나타난다.
-// 키보드 포커스로도 닿을 수 있어야 하므로 focus-within 을 함께 건다.
-// 블록에 마우스를 올리면 또렷해지고, 버튼 자체에 올리면 완전히 드러난다
-.main-content div.highlighter-rouge:hover .copy-btn,
-.main-content figure.highlight:hover .copy-btn,
-.main-content div.highlighter-rouge:focus-within .copy-btn,
-.main-content figure.highlight:focus-within .copy-btn { opacity: 0.8; }
-
-.copy-btn:hover { opacity: 1 !important; }
-
-// 터치 기기에는 hover 가 없다
-@media (hover: none) {
-  .copy-btn { opacity: 0.7; }
+  // mermaid 블록도 마크다운상으로는 코드 블록이라 버튼이 붙는다.
+  // 그림을 클립보드에 복사할 일은 없으므로 감춘다.
+  div.highlighter-rouge:has(code.language-mermaid) > button,
+  figure.highlight:has(code.language-mermaid) > button { display: none; }
 }
 
 // ── 표 ──────────────────────────────────────────────────────
